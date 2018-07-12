@@ -1,11 +1,11 @@
 <idea-plugin version="2">
-  <id>idea.k</id>
-  <name>K</name>
+  <id>idea.k3</id>
+  <name>K3</name>
   <version>0.9.8</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
-      k/q Language Support (kx.com). Features:
+      k3 Language Support (kx.com). Features:
       <ul>
         <li>Syntax highlighting</li>
         <li>Navigate to declaration</li>
@@ -89,22 +89,22 @@
   <depends>com.intellij.modules.lang</depends>
   <project-components>
     <component>
-      <implementation-class>com.appian.intellij.k.KProjectComponent</implementation-class>
+      <implementation-class>com.appian.intellij.k3.KProjectComponent</implementation-class>
     </component>
   </project-components>
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.appian.intellij.k.KFileTypeFactory"/>
-    <lang.parserDefinition language="k" implementationClass="com.appian.intellij.k.KParserDefinition"/>
-    <lang.syntaxHighlighterFactory key="k" implementationClass="com.appian.intellij.k.KSyntaxHighlighterFactory"/>
-    <colorSettingsPage implementation="com.appian.intellij.k.KColorSettingsPage"/>
-    <lang.commenter language="k" implementationClass="com.appian.intellij.k.KCommenter"/>
-    <lang.braceMatcher language="k" implementationClass="com.appian.intellij.k.KPairedBraceMatcherAdapter"/>
-    <lang.refactoringSupport language="k" implementationClass="com.appian.intellij.k.KRefactoringSupportProvider"/>
-    <psi.referenceContributor implementation="com.appian.intellij.k.KReferenceContributor"/>
-    <gotoSymbolContributor implementation="com.appian.intellij.k.KChooseByNameContributor"/>
-    <lang.namesValidator language="k" implementationClass="com.appian.intellij.k.KNamesValidator"/>
-    <lang.findUsagesProvider language="k" implementationClass="com.appian.intellij.k.KFindUsagesProvider"/>
-    <lang.psiStructureViewFactory language="k" implementationClass="com.appian.intellij.k.KStructureViewFactory"/>
-    <completion.contributor language="k" implementationClass="com.appian.intellij.k.KCompletionContributor"/>
+    <fileTypeFactory implementation="com.appian.intellij.k3.KFileTypeFactory"/>
+    <lang.parserDefinition language="k3" implementationClass="com.appian.intellij.k3.KParserDefinition"/>
+    <lang.syntaxHighlighterFactory key="k3" implementationClass="com.appian.intellij.k3.KSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.appian.intellij.k3.KColorSettingsPage"/>
+    <lang.commenter language="k3" implementationClass="com.appian.intellij.k3.KCommenter"/>
+    <lang.braceMatcher language="k3" implementationClass="com.appian.intellij.k3.KPairedBraceMatcherAdapter"/>
+    <lang.refactoringSupport language="k3" implementationClass="com.appian.intellij.k3.KRefactoringSupportProvider"/>
+    <psi.referenceContributor implementation="com.appian.intellij.k3.KReferenceContributor"/>
+    <gotoSymbolContributor implementation="com.appian.intellij.k3.KChooseByNameContributor"/>
+    <lang.namesValidator language="k3" implementationClass="com.appian.intellij.k3.KNamesValidator"/>
+    <lang.findUsagesProvider language="k3" implementationClass="com.appian.intellij.k3.KFindUsagesProvider"/>
+    <lang.psiStructureViewFactory language="k3" implementationClass="com.appian.intellij.k3.KStructureViewFactory"/>
+    <completion.contributor language="k3" implementationClass="com.appian.intellij.k3.KCompletionContributor"/>
   </extensions>
 </idea-plugin>
