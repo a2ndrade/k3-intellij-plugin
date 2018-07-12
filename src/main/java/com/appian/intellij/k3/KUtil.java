@@ -23,7 +23,6 @@ import com.appian.intellij.k3.psi.KLambda;
 import com.appian.intellij.k3.psi.KLambdaParams;
 import com.appian.intellij.k3.psi.KModeDirective;
 import com.appian.intellij.k3.psi.KNamespaceDeclaration;
-import com.appian.intellij.k3.psi.KTypes;
 import com.appian.intellij.k3.psi.KUserId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Key;
@@ -33,7 +32,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.FileTypeIndex;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiTreeUtil;
 
 public final class KUtil {
@@ -189,31 +187,6 @@ public final class KUtil {
       return Optional.of((KLambda)expression.getFirstChild());
     }
     return Optional.empty();
-  }
-
-  static boolean isInQFile(PsiElement element) {
-    return isInFileWithExt(element, "q");
-  }
-
-  private static boolean isInFileWithExt(PsiElement element, String extension) {
-    final PsiFile file = element.getContainingFile();
-    return file == null || isFileWithExt(file.getVirtualFile(), extension);
-  }
-
-  static boolean isFileWithExt(VirtualFile file, String extension) {
-    return file == null || extension.equals(file.getExtension());
-  }
-
-  public static boolean isValidIdentifier(PsiElement element) {
-    if (!(element instanceof KUserId)) {
-      return false;
-    }
-    // in k3, the Q built-in functions are valid variable names. In Q, they are not
-    if (KUtil.isInQFile(element)) {
-      final IElementType elementType = ((KUserId)element).getNameIdentifier().getNode().getElementType();
-      return KTypes.Q_SYSTEM_FUNCTION != elementType;
-    }
-    return true;
   }
 
   static String generateFqn(String namespace, String identifier) {

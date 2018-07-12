@@ -1,6 +1,5 @@
 package com.appian.intellij.k3;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -76,9 +75,7 @@ public final class KReference extends PsiReferenceBase<PsiElement> implements Ps
       return foundInSameFile;
     }
     // 4) check other file's globals
-    final String fqnOrName = isBuiltinQFunction(sameFile, referenceName) ?
-        ".q." + referenceName : // defined under .q namespace inside q.k
-        KUtil.getFqnOrName(reference);
+    final String fqnOrName = KUtil.getFqnOrName(reference);
     final Collection<VirtualFile> otherFiles = FileTypeIndex.getFiles(KFileType.INSTANCE,
         GlobalSearchScope.allScope(project));
     for (VirtualFile otherFile : otherFiles) {
@@ -91,11 +88,6 @@ public final class KReference extends PsiReferenceBase<PsiElement> implements Ps
       }
     }
     return null;
-  }
-
-  private boolean isBuiltinQFunction(VirtualFile file, String referenceName) {
-    return Arrays.binarySearch(KCompletionContributor.SYSTEM_FNS_Q, referenceName) > 0 &&
-        KUtil.isFileWithExt(file, "q");
   }
 
   @Override

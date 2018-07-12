@@ -38,19 +38,6 @@ K3_SYSTEM_FUNCTION=(_a|_abs|_acos|_asin|_atan|_bd|_bin|_binl|_ci|_cos|_cosh|_d|_
         |_dvl|_exit|_exp|_f|_floor|_getenv|_gtime|_h|_host|_i|_ic|_in|_inv|_jd|_k|_lin|_log|_lsq|_lt|_mul|_n
         |_p|_setenv|_s|_sin|_sinh|_size|_sm|_sqr|_sqrt|_ss|_ssr|_sv|_T|_t|_tan|_tanh|_u|_vs|_v|_w)
 
-// q functions
-Q_SYSTEM_FUNCTION=(abs|acos|aj|aj0|all|and|any|asc|asin|asof|atan|attr|avg|avgs|bin|binr|by|ceiling|cols|cor|cos|count
-       |cov|cross|csv|cut|delete|deltas|desc|dev|differ|distinct|div|dsave|each|ej|ema|enlist|eval|except
-       |exec|exit|exp|fby|fills|first|fkeys|flip|floor|from|get|getenv|group|gtime|hclose|hcount|hdel|hopen
-       |hsym|iasc|idesc|ij|in|insert|inter|inv|key|keys|last|like|lj|ljf|load|log|lower|lsq|ltime|ltrim|mavg
-       |max|maxs|mcount|md5|mdev|med|meta|min|mins|mmax|mmin|mmu|mod|msum|neg|next|not|null|or|over|parse
-       |peach|pj|prd|prds|prev|prior|rand|rank|ratios|raze|read0|read1|reciprocal|reverse|rload|rotate|rsave
-       |rtrim|save|scan|scov|sdev|select|set|setenv|show|signum|sin|sqrt|ss|ssr|string|sublist|sum|sums|sv
-       |svar|system|tables|tan|til|trim|type|uj|ungroup|union|update|upper|upsert|value|var|view|views|vs
-       |wavg|where|within|wj|wj1|wsum|ww|xasc|xbar|xcol|xcols|xdesc|xexp|xgroup|xkey|xlog|xprev|xrank)
-
-Q_SQL_TEMPLATE=(select|exec|update|delete)
-
 INT_TYPE=[ihjepuvt]
 FLOAT_TYPE=[fen]
 Q_DATETIME_TYPE=[mdz]
@@ -165,8 +152,6 @@ CONDITIONAL=":"|"?"|"$"|"@"|"." // ":" is from k3
 
   {K3_SYSTEM_FUNCTION}/{ADVERB}               { yybegin(ADVERB_STATE); return K3_SYSTEM_FUNCTION; }
   {K3_SYSTEM_FUNCTION}                        { return K3_SYSTEM_FUNCTION; }
-  {Q_SYSTEM_FUNCTION}/{ADVERB}                { yybegin(ADVERB_STATE); return Q_SYSTEM_FUNCTION; }
-  {Q_SYSTEM_FUNCTION}                         { return Q_SYSTEM_FUNCTION; }
   {USER_IDENTIFIER}/{ADVERB}                  { yybegin(ADVERB_STATE); return USER_IDENTIFIER; }
   {USER_IDENTIFIER}                           { return USER_IDENTIFIER; }
   {NUMBER}/{ADVERB}                           { yybegin(ADVERB_STATE); return NUMBER; }
