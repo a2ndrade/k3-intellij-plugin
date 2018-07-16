@@ -141,7 +141,7 @@ Element(EXPRESSION)
   PsiElement(adverb)('/')
   Element(EXPRESSION)
     Element(USER_ID)
-      PsiElement(q function)('avg')
+      PsiElement(variable)('avg')
 ============|
 
 

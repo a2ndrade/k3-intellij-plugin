@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>idea.k3</id>
-  <name>K3</name>
-  <version>0.9.8</version>
+  <name>k3</name>
+  <version>0.9.9</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
@@ -15,73 +15,13 @@
         <li>File structure</li>
         <li>Go to symbol</li>
         <li>Color settings</li>
+        <li>Code folding</li>
       </ul>
   ]]></description>
   <change-notes><![CDATA[
-      <strong>0.9.8</strong><br/>
+      <strong>0.9.9</strong><br/>
       <ul>
-        <li>Fixes NPE in completion (issue #13)</li>
-        <li>New highlighting for primitive verbs</li>
-        <li>Commenter now uses double slash (instead of single slash)</li>
-      </ul>
-      <strong>0.9.7</strong><br/>
-      <ul>
-        <li>Fixes resolution of references when implicit lambda params are used</li>
-        <li>Fixes syntax error for commands (e.g. \l) using paths</li>
-      </ul>
-      <strong>0.9.6</strong><br/>
-      <ul>
-        <li>Enables completion of cross-file var/fns in default namespace</li>
-        <li>Fixes k.png icon lookup on some Intellij versions</li>
-      </ul>
-      <strong>0.9.5</strong><br/>
-      <ul>
-        <li>MIT license</li>
-        <li>Maintenance release</li>
-      </ul>
-      <strong>0.9.3</strong><br/>
-      <ul>
-        <li>Fixes lexer bug with namespace declarations</li>
-      </ul>
-      <strong>0.9.2</strong><br/>
-      <ul>
-        <li>k4/q partial block comments support</li>
-        <li>Fixes NPE on windows while resolving references</li>
-        <li>Other small fixes</li>
-      </ul>
-      <strong>0.9.0</strong><br/>
-      <ul>
-        <li>New, more flexible grammar. Supports k3,k4 and q</li>
-        <li>New unit tests for completion, references, renaming & parsing</li>
-      </ul>
-      <strong>0.8.1</strong><br/>
-      <ul>
-        <li>Fixes NPE</li>
-      </ul>
-      <strong>0.8</strong><br/>
-      <ul>
-        <li>q support</li>
-        <li>Structure View</li>
-        <li>Auto-complete</li>
-        <li>Find usages</li>
-      </ul>
-      <strong>0.3</strong><br/>
-      <ul>
-        <li>Small grammar fixes</li>
-      </ul>
-      <strong>0.2</strong><br/>
-      <ul>
-        <li>Basic Function Completion</li>
-        <li>Basic Function Rename</li>
-        <li>Basic Go to Symbol</li>
-        <li>Basic Search Everywhere</li>
-      </ul>
-      <strong>0.1</strong><br/>
-      <ul>
-        <li>Syntax Highlighting</li>
-        <li>Braces/Brackets/Parens Matching</li>
-        <li>Customizable Color Settings</li>
-        <li>Line Comments</li>
+        <li>Forked q/k4 plugin</li>
       </ul>
     ]]>
   </change-notes>
@@ -106,5 +46,7 @@
     <lang.findUsagesProvider language="k3" implementationClass="com.appian.intellij.k3.KFindUsagesProvider"/>
     <lang.psiStructureViewFactory language="k3" implementationClass="com.appian.intellij.k3.KStructureViewFactory"/>
     <completion.contributor language="k3" implementationClass="com.appian.intellij.k3.KCompletionContributor"/>
+    <enterHandlerDelegate implementation="com.appian.intellij.k3.KEnterBetweenBracesHandler"/>
+    <lang.foldingBuilder language="k3" implementationClass="com.appian.intellij.k3.KFoldingBuilder"/>
   </extensions>
 </idea-plugin>

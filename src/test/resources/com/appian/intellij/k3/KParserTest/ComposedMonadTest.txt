@@ -120,7 +120,7 @@ Element(EXPRESSION)
   PsiElement(adverb)(''')
   Element(EXPRESSION)
     Element(USER_ID)
-      PsiElement(q function)('log')
+      PsiElement(variable)('log')
 ============|
 
 
@@ -128,7 +128,7 @@ log@:(4::'log)?7
 ------------>
 Element(EXPRESSION)
   Element(USER_ID)
-    PsiElement(q function)('log')
+    PsiElement(variable)('log')
   PsiElement(primitive verb)('@')
   PsiElement(:)(':')
   Element(EXPRESSION)
@@ -140,7 +140,7 @@ Element(EXPRESSION)
         PsiElement(adverb)(''')
         Element(EXPRESSION)
           Element(USER_ID)
-            PsiElement(q function)('log')
+            PsiElement(variable)('log')
       PsiElement())(')')
     PsiElement(primitive verb)('?')
     Element(EXPRESSION)
