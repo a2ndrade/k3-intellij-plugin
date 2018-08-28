@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>idea.k3</id>
   <name>k3</name>
-  <version>0.9.9</version>
+  <version>1.0</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
@@ -19,7 +19,7 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
-      <strong>0.9.9</strong><br/>
+      <strong>1.0</strong><br/>
       <ul>
         <li>Forked q/k4 plugin</li>
       </ul>
