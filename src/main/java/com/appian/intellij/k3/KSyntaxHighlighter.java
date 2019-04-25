@@ -21,19 +21,19 @@ import com.intellij.psi.tree.IElementType;
 
 public final class KSyntaxHighlighter extends SyntaxHighlighterBase {
 
-  public static final TextAttributesKey ADVERB = createTextAttributesKey("K_ADVERB", DefaultLanguageHighlighterColors.KEYWORD);
-  public static final TextAttributesKey IDENTIFIER = createTextAttributesKey("K_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
-  public static final TextAttributesKey IDENTIFIER_SYS = createTextAttributesKey("K_SYSFUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
-  public static final TextAttributesKey SYMBOL = createTextAttributesKey("K_SYMBOL", DefaultLanguageHighlighterColors.CONSTANT);
-  public static final TextAttributesKey NUMBER = createTextAttributesKey("K_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
-  public static final TextAttributesKey KEYWORD = createTextAttributesKey("K_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
-  public static final TextAttributesKey STRING = createTextAttributesKey("K_STRING", DefaultLanguageHighlighterColors.STRING);
-  public static final TextAttributesKey BRACES = createTextAttributesKey("K_BRACES", DefaultLanguageHighlighterColors.BRACES);
-  public static final TextAttributesKey BRACKETS = createTextAttributesKey("K_BRACKETS", DefaultLanguageHighlighterColors.BRACKETS);
-  public static final TextAttributesKey PARENS = createTextAttributesKey("K_PARENTHESES", DefaultLanguageHighlighterColors.PARENTHESES);
-  public static final TextAttributesKey COMMENT = createTextAttributesKey("K_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
+  public static final TextAttributesKey ADVERB = createTextAttributesKey("K3_ADVERB", DefaultLanguageHighlighterColors.KEYWORD);
+  public static final TextAttributesKey IDENTIFIER = createTextAttributesKey("K3_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
+  public static final TextAttributesKey IDENTIFIER_SYS = createTextAttributesKey("K3_SYSFUNCTION", DefaultLanguageHighlighterColors.KEYWORD);
+  public static final TextAttributesKey SYMBOL = createTextAttributesKey("K3_SYMBOL", DefaultLanguageHighlighterColors.CONSTANT);
+  public static final TextAttributesKey NUMBER = createTextAttributesKey("K3_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
+  public static final TextAttributesKey KEYWORD = createTextAttributesKey("K3_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
+  public static final TextAttributesKey STRING = createTextAttributesKey("K3_STRING", DefaultLanguageHighlighterColors.STRING);
+  public static final TextAttributesKey BRACES = createTextAttributesKey("K3_BRACES", DefaultLanguageHighlighterColors.BRACES);
+  public static final TextAttributesKey BRACKETS = createTextAttributesKey("K3_BRACKETS", DefaultLanguageHighlighterColors.BRACKETS);
+  public static final TextAttributesKey PARENS = createTextAttributesKey("K3_PARENTHESES", DefaultLanguageHighlighterColors.PARENTHESES);
+  public static final TextAttributesKey COMMENT = createTextAttributesKey("K3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
-  static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("K_BAD_CHARACTER",
+  static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("K3_BAD_CHARACTER",
     new TextAttributes(Color.RED, null, null, null, Font.BOLD));
 
   private static final TextAttributesKey[] ADVERB_KEYS = new TextAttributesKey[]{ADVERB};

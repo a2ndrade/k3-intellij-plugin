@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>idea.k3</id>
   <name>k3</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
@@ -19,6 +19,10 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.1</strong><br/>
+      <ul>
+        <li>Avoids highlighting keys collision with q/k4 plugin</li>
+      </ul>
       <strong>1.0</strong><br/>
       <ul>
         <li>Forked q/k4 plugin</li>
