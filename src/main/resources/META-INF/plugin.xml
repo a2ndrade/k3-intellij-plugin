@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>idea.k3</id>
   <name>k3</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
@@ -19,6 +19,12 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.2</strong><br/>
+      <ul>
+        <li>2019.1+ compatibility</li>
+        <li>Unused local variables are now grayed out</li>
+        <li>Inline warning is shown when param names are duplicated</li>
+      </ul>
       <strong>1.1</strong><br/>
       <ul>
         <li>Avoids highlighting keys collision with q/k4 plugin</li>
@@ -29,8 +35,9 @@
       </ul>
     ]]>
   </change-notes>
-  <idea-version since-build="131"/>
+  <idea-version since-build="191"/>
   <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.java</depends>
   <project-components>
     <component>
       <implementation-class>com.appian.intellij.k3.KProjectComponent</implementation-class>
@@ -52,5 +59,7 @@
     <completion.contributor language="k3" implementationClass="com.appian.intellij.k3.KCompletionContributor"/>
     <enterHandlerDelegate implementation="com.appian.intellij.k3.KEnterBetweenBracesHandler"/>
     <lang.foldingBuilder language="k3" implementationClass="com.appian.intellij.k3.KFoldingBuilder"/>
+    <highlightVisitor implementation="com.appian.intellij.k3.KUnusedVariableHighlightVisitor"/>
+    <annotator language="k3" implementationClass="com.appian.intellij.k3.KLambdaAnnotator"/>
   </extensions>
 </idea-plugin>

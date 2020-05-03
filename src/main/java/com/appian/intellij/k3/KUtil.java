@@ -58,6 +58,10 @@ public final class KUtil {
     return it.hasNext() ? it.next() : null;
   }
 
+  public static boolean isNamespacedId(String identifier) {
+    return isAbsoluteId(identifier) || identifier.indexOf('.') != -1;
+  }
+
   interface Matcher {
     boolean matches(String found);
   }

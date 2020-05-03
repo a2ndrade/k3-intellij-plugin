@@ -2,14 +2,20 @@ package com.appian.intellij.k3;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.jetbrains.annotations.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.appian.intellij.k3.psi.KAssignment;
 import com.appian.intellij.k3.psi.KLambda;
 import com.appian.intellij.k3.psi.KLambdaParams;
+import com.appian.intellij.k3.psi.KNamedElement;
 import com.appian.intellij.k3.psi.KNamespaceDeclaration;
+import com.appian.intellij.k3.psi.KTypes;
 import com.appian.intellij.k3.psi.KUserId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
@@ -107,4 +113,55 @@ public final class KReference extends PsiReferenceBase<PsiElement> implements Ps
     // cross-language rename
     return super.handleElementRename(newElementName);
   }
+
+  @Nullable
+  public static KUserId findLocalDeclaration(KNamedElement target) {
+    // exit early if an namespaced id is found b/c local assignments are never namespaced/qualified
+    final String text = target.getText();
+    if (KUtil.isNamespacedId(text)) {
+      return null;
+    }
+    final KLambda enclosingLambda = PsiTreeUtil.getContextOfType(target, KLambda.class);
+    // 1) check the enclosing enclosingLambda params
+    return Optional.ofNullable(enclosingLambda)
+        .map(KLambda::getLambdaParams)
+        .map(KLambdaParams::getUserIdList)
+        .orElse(Collections.emptyList())
+        .stream()
+        .filter(id -> text.equals(id.getText()))
+        .findFirst()
+        .orElse(findLocalAssignment(text, enclosingLambda));
+  }
+
+  @Nullable
+  private static KUserId findLocalAssignment(String text, KLambda enclosingLambda) {
+    List<KAssignment> assignmentsInLambdaScope = PsiTreeUtil.findChildrenOfType(enclosingLambda, KAssignment.class)
+        .stream()
+        .filter(id -> text.equals(id.getUserId().getText()))
+        .collect(Collectors.toList());
+    for (KAssignment assignment : assignmentsInLambdaScope) {
+      if (isSyntacticallyGlobalAmend(assignment) || isComposite(assignment)) {
+        continue;
+      }
+      return assignment.getUserId();
+    }
+    return null;
+  }
+
+  private static boolean isComposite(KAssignment assignment) {
+    // e.g. x[..]:1
+    return assignment.getArgs() != null;
+  }
+
+  private static boolean isSyntacticallyGlobalAmend(KAssignment assignment) {
+    final KUserId userId = assignment.getUserId();
+    // global amend e.g. a::1
+    return Optional.of(userId)
+        .map(PsiElement::getNextSibling)
+        .filter(el -> el.getNode().getElementType() == KTypes.COLON)
+        .map(PsiElement::getNextSibling)
+        .filter(el -> el.getNode().getElementType() == KTypes.COLON)
+        .isPresent();
+  }
+
 }
