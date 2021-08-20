@@ -2,6 +2,7 @@
 ------------>
 Element(EXPRESSION)
   PsiElement(number)('3')
+  PsiWhiteSpace(' ')
   PsiElement(primitive verb)('+')
 ============|
 
@@ -13,8 +14,10 @@ Element(EXPRESSION)
     PsiElement(()('(')
     Element(EXPRESSION)
       PsiElement(number)('3')
+      PsiWhiteSpace(' ')
       PsiElement(primitive verb)('+')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(number)('4')
 ============|
 
@@ -23,6 +26,7 @@ Element(EXPRESSION)
 ------------>
 Element(EXPRESSION)
   PsiElement(number)('4')
+  PsiWhiteSpace(' ')
   PsiElement(k3 function)('_div')
 ============|
 
@@ -42,8 +46,10 @@ Element(EXPRESSION)
     PsiElement(()('(')
     Element(EXPRESSION)
       PsiElement(number)('4')
+      PsiWhiteSpace(' ')
       PsiElement(k3 function)('_div')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(number)('2')
 ============|
 
@@ -76,6 +82,7 @@ Element(EXPRESSION)
       PsiElement(primitive verb)('+')
       PsiElement(adverb)('/')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(number vector)('1 2 3')
 ============|
 
@@ -90,6 +97,7 @@ Element(EXPRESSION)
       PsiElement(primitive verb)('+')
       PsiElement(adverb)('/:')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(number vector)('1 2 3')
 ============|
 

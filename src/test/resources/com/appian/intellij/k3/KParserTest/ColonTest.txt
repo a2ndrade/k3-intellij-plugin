@@ -33,6 +33,7 @@ Element(EXPRESSION)
 ------------>
 Element(EXPRESSION)
   PsiElement(char)('"a"')
+  PsiWhiteSpace(' ')
   PsiElement(primitive verb)('1:')
   Element(EXPRESSION)
     Element(USER_ID)

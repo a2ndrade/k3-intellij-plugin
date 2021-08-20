@@ -43,7 +43,7 @@ public class KParserTest extends ParsingTestCase {
       throw new RuntimeException("Folder not found: " + folder);
     }
     for(String fileName : fileNames) {
-      if (fileName.startsWith("_")) { // e.g. sandboxØ
+      if (fileName.startsWith("_")) { // e.g. sandbox
         continue;
       }
       suite.addTest(new KParserTest(fileName));
@@ -143,26 +143,22 @@ public class KParserTest extends ParsingTestCase {
     return sectionsList.toArray(new String[0]);
   }
 
-  private static List<String> readLinesIncludingLineTerminators(Object o)
-    throws IOException {
-    try(
-      Reader fr = o instanceof File
-        ? new FileReader((File)o)
-        : new StringReader((String)o);
-      BufferedReader br = new BufferedReader(fr);
-      PushbackReader pr = new PushbackReader(br)) {
+  private static List<String> readLinesIncludingLineTerminators(Object o) throws IOException {
+    try (Reader fr = o instanceof File ? new FileReader((File)o) : new StringReader((String)o);
+        BufferedReader br = new BufferedReader(fr);
+        PushbackReader pr = new PushbackReader(br)) {
       List<String> linesList = new ArrayList<String>();
       int c;
       do {
         StringBuffer lineSb = new StringBuffer();
         while ((c = pr.read()) != -1) {
-          lineSb.append((char) c);
+          lineSb.append((char)c);
           if (c == '\n') {
             break;
           } else if (c == '\r') {
             c = pr.read();
             if (c == '\n') {
-              lineSb.append((char) c);
+              lineSb.append((char)c);
             } else if (c != -1) {
               pr.unread(c);
             }
@@ -174,6 +170,7 @@ public class KParserTest extends ParsingTestCase {
       return linesList;
     }
   }
+
 
   @Override
   protected String getTestDataPath() {

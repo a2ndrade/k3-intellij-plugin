@@ -12,6 +12,7 @@ x -1
 Element(EXPRESSION)
   Element(USER_ID)
     PsiElement(variable)('x')
+  PsiWhiteSpace(' ')
   PsiElement(number)('-1')
 ============|
 
@@ -56,8 +57,10 @@ Element(EXPRESSION)
     Element(EXPRESSION)
       PsiElement(number)('1')
     PsiElement(])(']')
+  PsiWhiteSpace(' ')
   Element(EXPRESSION)
     PsiElement(primitive verb)('-')
+    PsiWhiteSpace(' ')
     PsiElement(number)('1')
 ============|
 
@@ -72,6 +75,7 @@ Element(EXPRESSION)
     Element(EXPRESSION)
       PsiElement(number)('1')
     PsiElement(])(']')
+  PsiWhiteSpace(' ')
   Element(EXPRESSION)
     PsiElement(number)('-1')
 ============|
@@ -91,6 +95,7 @@ Element(EXPRESSION)
           PsiElement(variable)('b')
     PsiElement())(')')
   PsiElement(primitive verb)('-')
+  PsiWhiteSpace(' ')
   Element(EXPRESSION)
     PsiElement(number)('1')
 ============|
@@ -109,7 +114,9 @@ Element(EXPRESSION)
         Element(USER_ID)
           PsiElement(variable)('b')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(primitive verb)('-')
+  PsiWhiteSpace(' ')
   Element(EXPRESSION)
     PsiElement(number)('1')
 ============|
@@ -128,6 +135,7 @@ Element(EXPRESSION)
         Element(USER_ID)
           PsiElement(variable)('b')
     PsiElement())(')')
+  PsiWhiteSpace(' ')
   PsiElement(number)('-1')
 ============|
 
