@@ -22,8 +22,8 @@ import com.appian.intellij.k3.psi.KFile;
 import com.appian.intellij.k3.psi.KLambda;
 import com.appian.intellij.k3.psi.KLambdaParams;
 import com.appian.intellij.k3.psi.KModeDirective;
+import com.appian.intellij.k3.psi.KNamedElement;
 import com.appian.intellij.k3.psi.KNamespaceDeclaration;
-import com.appian.intellij.k3.psi.KTypes;
 import com.appian.intellij.k3.psi.KUserId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Key;
@@ -83,7 +83,7 @@ public final class KUtil {
     }
   }
 
-  static Matcher AnyMatcher = (found) -> true;
+  private static final Matcher AnyMatcher = (found) -> true;
 
     @NotNull
   static Collection<KUserId> findIdentifiers(
@@ -182,7 +182,7 @@ public final class KUtil {
     }).orElse(fqnOrName);
   }
 
-  static Optional<KLambda> getFunctionDefinition(@NotNull KUserId element) {
+  public static Optional<KLambda> getFunctionDefinition(@NotNull KNamedElement element) {
     final KExpression expression = PsiTreeUtil.getNextSiblingOfType(element, KExpression.class);
     if (expression != null && expression.getFirstChild() instanceof KLambda) {
       return Optional.of((KLambda)expression.getFirstChild());
@@ -261,27 +261,18 @@ public final class KUtil {
     }
   }
 
-  public static void putFqn(KUserId element, String fqn) {
-    putUserData(element, FQN, fqn);
+  public static void putFqn(KNamedElement element, String fqn) {
+    element.putUserData(FQN, fqn);
   }
 
   @Nullable
-  public static String getFqn(KUserId element) {
-    return getUserData(element, FQN);
+  public static String getFqn(KNamedElement element) {
+    return element.getUserData(FQN);
   }
 
   @NotNull
-  public static String getFqnOrName(KUserId element) {
+  public static String getFqnOrName(KNamedElement element) {
     final String fqn = getFqn(element);
     return fqn != null ? fqn : element.getName();
   }
-
-  private static <T> void putUserData(PsiElement element, Key<T> key, T data) {
-    element.putUserData(key, data);
-  }
-
-  private static <T> T getUserData(PsiElement element, Key<T> key) {
-    return element.getUserData(key);
-  }
-
 }
