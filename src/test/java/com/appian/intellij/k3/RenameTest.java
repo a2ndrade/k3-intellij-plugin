@@ -1,30 +1,39 @@
 package com.appian.intellij.k3;
 
+import static org.junit.runners.Parameterized.Parameters;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
 import com.appian.intellij.k3.psi.KUserId;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
-import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
+import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+@RunWith(Parameterized.class)
+public class RenameTest extends LightPlatformCodeInsightFixture4TestCase {
 
-public class RenameTest extends LightCodeInsightFixtureTestCase {
-
-  public static Test suite() {
-    final TestSuite suite = new TestSuite();
+    @Parameters(name = "{0}.k")
+    public static Collection<Object[]> suite() {
+      final List<Object[]> testData = new ArrayList<>();
     for (String context : new String[]{"top", "fn"}) {
       for (String fromType : new String[]{"local"}) {
         for (String toType : new String[]{"local", "global"}) {
           for (String from : new String[]{"def", "usage"}) {
             final String fileNamePrefix = context + "_" + fromType + "_to_" + toType + "_from_" + from;
             final String renameTo = "local".equals(toType) ? "test2" : ".g.test";
-            suite.addTest(new RenameTest(fileNamePrefix, renameTo));
+            testData.add(new Object[]{fileNamePrefix, renameTo});
           }
         }
       }
     }
-    return suite;
+    return testData;
   }
 
   private final String fileNamePrefix;
@@ -46,6 +55,7 @@ public class RenameTest extends LightCodeInsightFixtureTestCase {
     return fileNamePrefix + ".k";
   }
 
+  @Test
   public void testRename() {
     final String inputFileName = fileNamePrefix + ".k";
     final String outputFileName = fileNamePrefix + "_after.k";
@@ -57,12 +67,17 @@ public class RenameTest extends LightCodeInsightFixtureTestCase {
   }
 
   private void assertReferences(PsiFile file) {
-    final PsiElement userIdToken = file.findElementAt(myFixture.getCaretOffset());
-    final PsiElement userId = userIdToken.getContext();
-    assertInstanceOf(userId, KUserId.class);
+    final PsiElement elementAt = file.findElementAt(myFixture.getCaretOffset());
+    final PsiElement userIdElement = elementAt.getContext();
+    assertInstanceOf(userIdElement, KUserId.class);
+    final KUserId userId = (KUserId)userIdElement;
     final PsiReference[] references = userId.getReferences();
     assertEquals(1, references.length);
-    assertNotNull(references[0].resolve());
+    final PsiElement resolved = references[0].resolve();
+    if (userId.isDeclaration()) {
+      assertNull("Declaration should not resolve to itself",resolved);
+    } else {
+      assertNotNull("Declaration not found",resolved);
+    }
   }
-
 }

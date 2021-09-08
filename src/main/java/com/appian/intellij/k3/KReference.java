@@ -4,12 +4,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.appian.intellij.k3.psi.KAssignment;
 import com.appian.intellij.k3.psi.KLambda;
 import com.appian.intellij.k3.psi.KLambdaParams;
 import com.appian.intellij.k3.psi.KNamespaceDeclaration;
 import com.appian.intellij.k3.psi.KUserId;
-import com.appian.intellij.k3.psi.impl.KPsiImplUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -96,10 +97,10 @@ public final class KReference extends PsiReferenceBase<PsiElement> implements Ps
   }
 
   @Override
-  public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
+  public PsiElement handleElementRename(@NotNull String newElementName) throws IncorrectOperationException {
     if (myElement instanceof KUserId) {
       // inline rename
-      KPsiImplUtil.setName((KUserId)myElement, newElementName);
+      ((KUserId) myElement).setName(newElementName);
       KUserIdCache.getInstance().remove(myElement.getContainingFile().getVirtualFile());
       return myElement;
     }
