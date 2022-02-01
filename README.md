@@ -27,7 +27,7 @@ This plugin supports k3 syntax. Features include:
 1. Make sure the `Grammar-Kit` and `PsiViewer` plugins are installed
 1. Create a **fork** of this repository and **clone** it locally
 1. Open the repository in IntelliJ via the "**Open**" option on the splash page
-1. Open the Gradle tool window (`View` -> `Tool Windows` -> `Gradle`) and click on "**Refresh all Gradle Projects**"
+1. Open the Gradle tool window (`View` -> `Tool Windows` -> `Gradle`) and click on "**Reload all Gradle Projects**"
 1. From the command line, **run** `./gradlew compileJava compileTestJava`
 1. **Build** the project (`Build` -> `Build Project`)
 
