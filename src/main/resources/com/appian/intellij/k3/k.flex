@@ -71,7 +71,7 @@ CONTROL="if"|"do"|"while"
 CONDITIONAL=":"|"?"|"$"|"@"|"." // ":" is from k3
 
 %state ADVERB_STATE
-%state BLOCK_COMMENT_1
+%state END_OF_FILE
 %state COMMAND_STATE
 %state COMMENT_STATE
 %state DROP_CUT_STATE
@@ -82,8 +82,8 @@ CONDITIONAL=":"|"?"|"$"|"@"|"." // ":" is from k3
   {ADVERB}                                    { yybegin(YYINITIAL); return ADVERB;}
 }
 
-<BLOCK_COMMENT_1> {
-  ^"/"{NEWLINE}                               { yybegin(YYINITIAL); return COMMENT; }
+<END_OF_FILE> {
+  ^"\\"{NEWLINE}                              { yybegin(YYINITIAL); return COMMENT; }
   {NEWLINE}+                                  { return COMMENT; }
   .*                                          { return COMMENT; }
 }
@@ -165,7 +165,7 @@ CONDITIONAL=":"|"?"|"$"|"@"|"." // ":" is from k3
   ":"/{ADVERB}                                { yybegin(ADVERB_STATE); return COLON; }
   ":"                                         { return COLON; }
   "'"                                         { return SIGNAL; }
-  ^"\\"{NEWLINE}                              { yybegin(BLOCK_COMMENT_1); return COMMENT; }
+  ^"\\"{NEWLINE}                              { yybegin(END_OF_FILE); return COMMENT; }
   "\\"                                        { return TRACE; }
 
 }

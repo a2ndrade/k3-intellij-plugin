@@ -170,3 +170,17 @@ Element(FILE)
   PsiComment(comment)('all these')
   PsiComment(comment)('\n')
   PsiComment(comment)('are comments')
+============|
+
+
+/ This comment
+/
+/ Ends here
+1
+------------>
+Element(FILE)
+  PsiComment(comment)('/ This comment\n')
+  PsiComment(comment)('/\n')
+  PsiComment(comment)('/ Ends here\n')
+  Element(EXPRESSION)
+    PsiElement(number)('1')
