@@ -19,6 +19,12 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.3</strong><br/>
+      <ul>
+        <li>Fixed bug where an empty commented line would start a never-ending block comment</li>
+        <li>Added EOF parsing</li>
+        <li>Altered comment formatting when using keyboard shortcut</li>
+      </ul>
       <strong>1.2</strong><br/>
       <ul>
         <li>2019.1+ compatibility</li>
