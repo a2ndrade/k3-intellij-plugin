@@ -19,6 +19,10 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.4</strong><br/>
+      <ul>
+        <li>Corrected missing syntax highlighting for IntelliJ 2024.1</li>
+      </ul>
       <strong>1.3</strong><br/>
       <ul>
         <li>Fixed bug where an empty commented line would start a never-ending block comment</li>
@@ -52,7 +56,7 @@
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.appian.intellij.k3.KFileTypeFactory"/>
     <lang.parserDefinition language="k3" implementationClass="com.appian.intellij.k3.KParserDefinition"/>
-    <lang.syntaxHighlighterFactory key="k3" implementationClass="com.appian.intellij.k3.KSyntaxHighlighterFactory"/>
+    <lang.syntaxHighlighterFactory language="k3" implementationClass="com.appian.intellij.k3.KSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.appian.intellij.k3.KColorSettingsPage"/>
     <lang.commenter language="k3" implementationClass="com.appian.intellij.k3.KCommenter"/>
     <lang.braceMatcher language="k3" implementationClass="com.appian.intellij.k3.KPairedBraceMatcherAdapter"/>
