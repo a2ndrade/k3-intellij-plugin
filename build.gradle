@@ -26,7 +26,7 @@ intellij {
   plugins = ['com.intellij.java']
 }
 
-version '1.3' // Plugin version
+version '1.4' // Plugin version
 patchPluginXml {
   untilBuild '999.*'
 }
