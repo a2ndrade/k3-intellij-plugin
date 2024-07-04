@@ -54,10 +54,9 @@ final class KUnusedVariableHighlightVisitor implements HighlightVisitor {
   }
 
   private static boolean isUnusedKLocalDeclaration(@NotNull PsiElement element) {
-    if (!(element instanceof KUserId)) {
+    if (!(element instanceof KUserId usage)) {
       return false;
     }
-    final KUserId usage = (KUserId)element;
     if (!usage.isDeclaration()) {
       return false; // ignore. we want to highlight declarations, not usages
     }

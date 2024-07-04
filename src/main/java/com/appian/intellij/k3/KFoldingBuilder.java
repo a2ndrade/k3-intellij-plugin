@@ -27,7 +27,7 @@ public class KFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     List<FoldingDescriptor> descriptors = new ArrayList<>();
     buildInnerFoldRegions(root, descriptors, 0);
 
-    return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
+    return descriptors.toArray(new FoldingDescriptor[0]);
   }
 
   private void buildInnerFoldRegions(PsiElement root, List<FoldingDescriptor> descriptors, int depth) {

@@ -3,7 +3,9 @@ package com.appian.intellij.k3;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.impl.DebugUtil;
@@ -39,13 +41,15 @@ public class ScriptsTest extends KParserTest {
         // not every user has the tests there
         return;
       }
-      Files.walk(Paths.get(folder.toURI())).forEach(path -> {
-        final File file = path.toFile();
-        final String fileName = file.getName();
-        if (file.isFile() && (fileName.endsWith(".k") || fileName.endsWith(".q"))) {
-          suite.addTest(new ScriptsTest(file));
-        }
-      });
+      try (Stream<Path> walk = Files.walk(Paths.get(folder.toURI()))) {
+        walk.forEach(path -> {
+          final File file = path.toFile();
+          final String fileName = file.getName();
+          if (file.isFile() && (fileName.endsWith(".k") || fileName.endsWith(".q"))) {
+            suite.addTest(new ScriptsTest(file));
+          }
+        });
+      }
     }
   }
 

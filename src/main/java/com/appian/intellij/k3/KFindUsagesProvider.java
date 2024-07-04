@@ -60,10 +60,9 @@ public final class KFindUsagesProvider implements FindUsagesProvider {
   @NotNull
   @Override
   public String getNodeText(@NotNull PsiElement element, boolean useFullName) {
-    if (!(element instanceof KUserId)) {
+    if (!(element instanceof KUserId userId)) {
       return "";
     }
-    final KUserId userId = (KUserId)element;
     return useFullName ? KUtil.getFqnOrName(userId) : userId.getName();
   }
 }

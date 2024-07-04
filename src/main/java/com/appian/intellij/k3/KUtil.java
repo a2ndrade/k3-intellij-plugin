@@ -44,8 +44,7 @@ public final class KUtil {
         GlobalSearchScope.allScope(project));
     final Stream<KUserId> stream = virtualFiles.stream()
         .flatMap(file -> findIdentifiers(project, file, AnyMatcher, false).stream());
-    List<KUserId> fnNames = stream.collect(Collectors.toList());
-    return fnNames;
+    return stream.collect(Collectors.toList());
   }
 
   public static Collection<KUserId> findIdentifiers(Project project, VirtualFile file) {
@@ -141,8 +140,7 @@ public final class KUtil {
     }
     final List<KUserId> ids = new ArrayList<>();
     PsiElement currentElement = topLevelElement;
-    while(currentElement instanceof KExpression && currentElement.getFirstChild() instanceof KAssignment) {
-      final KAssignment assignment = (KAssignment)currentElement.getFirstChild();
+    while(currentElement instanceof KExpression && currentElement.getFirstChild() instanceof KAssignment assignment) {
       ids.add(assignment.getUserId());
       currentElement = assignment.getExpression();
     }

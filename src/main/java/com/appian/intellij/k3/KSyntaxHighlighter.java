@@ -2,11 +2,7 @@ package com.appian.intellij.k3;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.io.Reader;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.appian.intellij.k3.psi.KTypes;
@@ -18,6 +14,7 @@ import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
+import com.intellij.ui.JBColor;
 
 public final class KSyntaxHighlighter extends SyntaxHighlighterBase {
 
@@ -34,7 +31,7 @@ public final class KSyntaxHighlighter extends SyntaxHighlighterBase {
   public static final TextAttributesKey COMMENT = createTextAttributesKey("K3_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
 
   static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("K3_BAD_CHARACTER",
-    new TextAttributes(Color.RED, null, null, null, Font.BOLD));
+    new TextAttributes(JBColor.RED, null, null, null, Font.BOLD));
 
   private static final TextAttributesKey[] ADVERB_KEYS = new TextAttributesKey[]{ADVERB};
   private static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
@@ -53,45 +50,36 @@ public final class KSyntaxHighlighter extends SyntaxHighlighterBase {
 
   @Override
   public Lexer getHighlightingLexer() {
-    return new FlexAdapter(new KLexer((Reader)null));
+    return new FlexAdapter(new KLexer(null));
   }
 
   private static final Map<IElementType, TextAttributesKey[]> M = buildMappings();
 
   private static Map<IElementType,TextAttributesKey[]> buildMappings() {
-    final Map<IElementType, TextAttributesKey[]> m = new HashMap<>();
-    m.put(KTypes.USER_IDENTIFIER, IDENTIFIER_KEYS);
-    m.put(KTypes.K3_SYSTEM_FUNCTION, IDENTIFIER_SYS_KEYS);
 
-    m.put(KTypes.NUMBER, NUMBER_KEYS);
-    m.put(KTypes.NUMBER_VECTOR, NUMBER_KEYS);
-
-    m.put(KTypes.CHAR, STRING_KEYS);
-    m.put(KTypes.STRING, STRING_KEYS);
-
-    m.put(KTypes.SYMBOL, SYMBOL_KEYS);
-    m.put(KTypes.SYMBOL_VECTOR, SYMBOL_KEYS);
-
-    m.put(KTypes.PRIMITIVE_VERB, NUMBER_KEYS);
-    m.put(KTypes.ADVERB, ADVERB_KEYS);
-
-    m.put(KTypes.COMMAND, IDENTIFIER_SYS_KEYS);
-    m.put(KTypes.CURRENT_NAMESPACE, IDENTIFIER_SYS_KEYS);
-
-    m.put(KTypes.COLON, KEYWORD_KEYS);
-    m.put(KTypes.CONTROL, KEYWORD_KEYS);
-    m.put(KTypes.CONDITIONAL, KEYWORD_KEYS);
-
-    m.put(KTypes.OPEN_BRACE, BRACES_KEYS);
-    m.put(KTypes.CLOSE_BRACE, BRACES_KEYS);
-    m.put(KTypes.OPEN_BRACKET, BRACKETS_KEYS);
-    m.put(KTypes.CLOSE_BRACKET, BRACKETS_KEYS);
-    m.put(KTypes.OPEN_PAREN, PARENS_KEYS);
-    m.put(KTypes.CLOSE_PAREN, PARENS_KEYS);
-
-    m.put(KTypes.COMMENT, COMMENT_KEYS);
-    m.put(TokenType.BAD_CHARACTER, BAD_CHAR_KEYS);
-    return Collections.unmodifiableMap(m);
+      return Map.ofEntries(Map.entry(KTypes.USER_IDENTIFIER, IDENTIFIER_KEYS),
+              Map.entry(KTypes.K3_SYSTEM_FUNCTION, IDENTIFIER_SYS_KEYS),
+              Map.entry(KTypes.NUMBER, NUMBER_KEYS),
+              Map.entry(KTypes.NUMBER_VECTOR, NUMBER_KEYS),
+              Map.entry(KTypes.CHAR, STRING_KEYS),
+              Map.entry(KTypes.STRING, STRING_KEYS),
+              Map.entry(KTypes.SYMBOL, SYMBOL_KEYS),
+              Map.entry(KTypes.SYMBOL_VECTOR, SYMBOL_KEYS),
+              Map.entry(KTypes.PRIMITIVE_VERB, NUMBER_KEYS),
+              Map.entry(KTypes.ADVERB, ADVERB_KEYS),
+              Map.entry(KTypes.COMMAND, IDENTIFIER_SYS_KEYS),
+              Map.entry(KTypes.CURRENT_NAMESPACE, IDENTIFIER_SYS_KEYS),
+              Map.entry(KTypes.COLON, KEYWORD_KEYS),
+              Map.entry(KTypes.CONTROL, KEYWORD_KEYS),
+              Map.entry(KTypes.CONDITIONAL, KEYWORD_KEYS),
+              Map.entry(KTypes.OPEN_BRACE, BRACES_KEYS),
+              Map.entry(KTypes.CLOSE_BRACE, BRACES_KEYS),
+              Map.entry(KTypes.OPEN_BRACKET, BRACKETS_KEYS),
+              Map.entry(KTypes.CLOSE_BRACKET, BRACKETS_KEYS),
+              Map.entry(KTypes.OPEN_PAREN, PARENS_KEYS),
+              Map.entry(KTypes.CLOSE_PAREN, PARENS_KEYS),
+              Map.entry(KTypes.COMMENT, COMMENT_KEYS),
+              Map.entry(TokenType.BAD_CHARACTER, BAD_CHAR_KEYS));
   }
 
   @Override

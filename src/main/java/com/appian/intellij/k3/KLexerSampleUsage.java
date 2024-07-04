@@ -7,7 +7,7 @@ public final class KLexerSampleUsage {
     final String input = "$ / some comment\n/ another comment";
     final KLexer lexer = new KLexer(null);
     lexer.reset(input, 0, input.length(), KLexer.YYINITIAL);
-    IElementType elementType = null;
+    IElementType elementType;
     do {
       elementType = lexer.advance();
       if (elementType != null) {

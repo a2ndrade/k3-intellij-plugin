@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -138,7 +137,7 @@ public final class KReference extends PsiReferenceBase<PsiElement> implements Ps
     List<KAssignment> assignmentsInLambdaScope = PsiTreeUtil.findChildrenOfType(enclosingLambda, KAssignment.class)
         .stream()
         .filter(id -> text.equals(id.getUserId().getText()))
-        .collect(Collectors.toList());
+        .toList();
     for (KAssignment assignment : assignmentsInLambdaScope) {
       if (isSyntacticallyGlobalAmend(assignment) || isComposite(assignment)) {
         continue;

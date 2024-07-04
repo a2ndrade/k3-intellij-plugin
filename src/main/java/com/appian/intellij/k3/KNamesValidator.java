@@ -15,9 +15,9 @@ public class KNamesValidator implements NamesValidator {
 
   @Override
   public boolean isKeyword(@NotNull String name, Project project) {
-    for (int i = 0; i < KEYWORDS.length; i++) {
-      if (KEYWORDS[i].equals(name)) {
-        return true;
+    for (String keyword : KEYWORDS) {
+      if (keyword.equals(name)) {
+          return true;
       }
     }
     return false;

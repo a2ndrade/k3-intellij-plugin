@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.Test;
 
 import com.appian.intellij.k3.psi.KUserId;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
 import com.intellij.testFramework.fixtures.LightPlatformCodeInsightFixture4TestCase;
+
 
 @RunWith(Parameterized.class)
 public class RenameTest extends LightPlatformCodeInsightFixture4TestCase {
