@@ -1,7 +1,5 @@
 package com.appian.intellij.k3;
 
-import java.io.Reader;
-
 import com.appian.intellij.k3.parser.KParser;
 import com.appian.intellij.k3.psi.KFile;
 import com.appian.intellij.k3.psi.KTypes;
@@ -27,11 +25,11 @@ public final class KParserDefinition implements ParserDefinition {
     KTypes.SYMBOL_VECTOR);
 
   public static final IFileElementType FILE = new IFileElementType(
-    Language.<KLanguage>findInstance(KLanguage.class));
+    Language.findInstance(KLanguage.class));
 
   @Override
   public Lexer createLexer(Project project) {
-    return new FlexAdapter(new KLexer((Reader)null));
+    return new FlexAdapter(new KLexer(null));
   }
 
   @Override

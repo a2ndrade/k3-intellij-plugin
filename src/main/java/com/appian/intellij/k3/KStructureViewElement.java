@@ -27,7 +27,7 @@ import com.intellij.psi.PsiNamedElement;
 final class KStructureViewElement
     implements StructureViewTreeElement, SortableTreeElement, AccessLevelProvider {
 
-  private PsiElement element;
+  private final PsiElement element;
 
   @Override
   public Object getValue() {

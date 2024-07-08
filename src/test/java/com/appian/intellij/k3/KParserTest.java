@@ -8,7 +8,6 @@ import java.io.PushbackReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.intellij.lang.ASTNode;
@@ -120,22 +119,20 @@ public class KParserTest extends ParsingTestCase {
   static String[] readFileIntoSections(Object source, String sectionsSeparator)
     throws IOException {
     final List<String> linesList = readLinesIncludingLineTerminators(source);
-    final List<String> sectionsList = new ArrayList<String>();
-    StringBuffer currentSection = null;
-    final Iterator<String> it = linesList.iterator();
-    while (it.hasNext()) {
-      String line = it.next();
-      if (line.startsWith(sectionsSeparator)) {
-        if (currentSection != null) {
-          sectionsList.add(currentSection.toString());
+    final List<String> sectionsList = new ArrayList<>();
+    StringBuilder currentSection = null;
+    for (String line : linesList) {
+        if (line.startsWith(sectionsSeparator)) {
+            if (currentSection != null) {
+                sectionsList.add(currentSection.toString());
+            }
+            currentSection = new StringBuilder();
+        } else {
+            if (currentSection == null) {
+                currentSection = new StringBuilder();
+            }
+            currentSection.append(line);
         }
-        currentSection = new StringBuffer();
-      } else {
-        if (currentSection == null) {
-          currentSection = new StringBuffer();
-        }
-        currentSection.append(line);
-      }
     }
     if (currentSection != null) {
       sectionsList.add(currentSection.toString());
@@ -147,10 +144,10 @@ public class KParserTest extends ParsingTestCase {
     try (Reader fr = o instanceof File ? new FileReader((File)o) : new StringReader((String)o);
         BufferedReader br = new BufferedReader(fr);
         PushbackReader pr = new PushbackReader(br)) {
-      List<String> linesList = new ArrayList<String>();
+      List<String> linesList = new ArrayList<>();
       int c;
       do {
-        StringBuffer lineSb = new StringBuffer();
+        StringBuilder lineSb = new StringBuilder();
         while ((c = pr.read()) != -1) {
           lineSb.append((char)c);
           if (c == '\n') {

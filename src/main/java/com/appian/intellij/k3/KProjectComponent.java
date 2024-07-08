@@ -10,14 +10,6 @@ public final class KProjectComponent implements ProjectComponent {
   public KProjectComponent(){}
 
   @Override
-  public void projectOpened() {
-  }
-
-  @Override
-  public void projectClosed() {
-  }
-
-  @Override
   public void initComponent() {
     VirtualFileManager.getInstance().addVirtualFileListener(KUserIdCache.getInstance());
   }

@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>idea.k3</id>
   <name>k3</name>
   <version>1.2</version>
@@ -19,6 +19,12 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.5</strong><br/>
+      <ul>
+        <li>Migrated to Java 17</li>
+        <li>Migrated to Gradle 8.5</li>
+        <li>Migrated to IntelliJ Platform Gradle Plugin 2.0</li>
+      </ul>
       <strong>1.4</strong><br/>
       <ul>
         <li>Corrected missing syntax highlighting for IntelliJ 2024.1</li>
@@ -48,11 +54,6 @@
   <idea-version since-build="191"/>
   <depends>com.intellij.modules.lang</depends>
   <depends>com.intellij.modules.java</depends>
-  <project-components>
-    <component>
-      <implementation-class>com.appian.intellij.k3.KProjectComponent</implementation-class>
-    </component>
-  </project-components>
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.appian.intellij.k3.KFileTypeFactory"/>
     <lang.parserDefinition language="k3" implementationClass="com.appian.intellij.k3.KParserDefinition"/>
@@ -61,7 +62,7 @@
     <lang.commenter language="k3" implementationClass="com.appian.intellij.k3.KCommenter"/>
     <lang.braceMatcher language="k3" implementationClass="com.appian.intellij.k3.KPairedBraceMatcherAdapter"/>
     <lang.refactoringSupport language="k3" implementationClass="com.appian.intellij.k3.KRefactoringSupportProvider"/>
-    <psi.referenceContributor implementation="com.appian.intellij.k3.KReferenceContributor"/>
+    <psi.referenceContributor language="k3" implementation="com.appian.intellij.k3.KReferenceContributor"/>
     <gotoSymbolContributor implementation="com.appian.intellij.k3.KChooseByNameContributor"/>
     <lang.namesValidator language="k3" implementationClass="com.appian.intellij.k3.KNamesValidator"/>
     <lang.findUsagesProvider language="k3" implementationClass="com.appian.intellij.k3.KFindUsagesProvider"/>

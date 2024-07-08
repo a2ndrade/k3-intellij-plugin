@@ -44,7 +44,7 @@ public class KCompletionContributor extends CompletionContributor {
   public KCompletionContributor() {
     extend(CompletionType.BASIC,
         PlatformPatterns.psiElement(KTypes.USER_IDENTIFIER).withLanguage(KLanguage.INSTANCE),
-        new CompletionProvider<CompletionParameters>() {
+        new CompletionProvider<>() {
           public void addCompletions(@NotNull CompletionParameters parameters, ProcessingContext context, @NotNull CompletionResultSet resultSet) {
             final CompletionResultSet caseInsensitiveResultSet = resultSet.caseInsensitive();
             final PsiElement element = parameters.getOriginalPosition();

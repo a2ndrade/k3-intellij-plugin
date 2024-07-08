@@ -7,7 +7,7 @@ import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.RowIcon;
 
 public final class KIcons {
-  public static final Icon FILE = IconLoader.getIcon("k3.png");
+  public static final Icon FILE = IconLoader.getIcon("k3.png", KIcons.class);
 
   public static final Icon PUBLIC_FUNCTION = new RowIcon(AllIcons.Nodes.Function, AllIcons.Nodes.C_public);
   public static final Icon PRIVATE_FUNCTION = new RowIcon(AllIcons.Nodes.Function, AllIcons.Nodes.C_private);
