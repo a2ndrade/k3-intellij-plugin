@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>idea.k3</id>
   <name>k3</name>
-  <version>1.2</version>
+  <version>1.6</version>
   <category>Custom Languages</category>
   <vendor email="antonio.andrade@me.com">Antonio Andrade</vendor>
   <description><![CDATA[
@@ -19,6 +19,10 @@
       </ul>
   ]]></description>
   <change-notes><![CDATA[
+      <strong>1.6</strong><br/>
+      <ul>
+        <li>Resolved Syntax Highlighting Issues in Intellij 2024.2</li>
+      </ul>
       <strong>1.5</strong><br/>
       <ul>
         <li>Migrated to Java 17</li>
